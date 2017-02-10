@@ -20,9 +20,15 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+hOfTheta = sigmoid(X * theta);
 
+costIfDataIsPositive = -y' * log(hOfTheta);
 
+costIfDataIsNegative = -(1-y)' * log(1 - hOfTheta);
 
+J = (1/m) * (costIfDataIsPositive + costIfDataIsNegative);
+
+grad = (1/m) * (hOfTheta - y)' * X;
 
 
 
