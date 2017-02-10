@@ -17,9 +17,24 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
+hOfTheta = sigmoid(X * theta);
+
+costIfDataIsPositive = -y' * log(hOfTheta);
+
+costIfDataIsNegative = -(1-y)' * log(1 - hOfTheta);
+
+squaredTheta = theta .^2;
+squaredTheta(1) = 0;        %That's because you don't regularize the first theta
+
+costRegression = lambda/(2*m) * (sum(squaredTheta));
+
+J = (1/m) * (costIfDataIsPositive + costIfDataIsNegative) + costRegression;
 
 
+gradientRegression = lambda/m * theta;
+gradientRegression(1) = 0;  %That's because you don't regularize the first theta
 
+grad = ((1/m) * (hOfTheta - y)' * X) + gradientRegression';
 
 
 % =============================================================
