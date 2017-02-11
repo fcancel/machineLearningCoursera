@@ -1,7 +1,7 @@
 function p = predictOneVsAll(all_theta, X)
 %PREDICT Predict the label for a trained one-vs-all classifier. The labels 
 %are in the range 1..K, where K = size(all_theta, 1). 
-%  p = PREDICTONEVSALL(all_theta, X) will return a vector of predictions
+%  p = predictOneVsAll(all_theta, X) will return a vector of predictions
 %  for each example in the matrix X. Note that X contains the examples in
 %  rows. all_theta is a matrix where the i-th row is a trained logistic
 %  regression theta vector for the i-th class. You should set p to a vector
@@ -30,9 +30,14 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+rowsWithCosts = X * all_theta'; % This will give me a rows(X) x rows(all_theta)
 
+% Now I have a matrix that has all of the costs in its columns, so
+% now I will have to transform this matrix into a rows(X) x 1 matrix
+% For example, if I have that rowsWithCosts = [0.1 0.2 0.7]
+% I will have to return p = [3]
 
-
+[notNeededValue , p] = max(rowsWithCosts, [], 2);
 
 
 

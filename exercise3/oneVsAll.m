@@ -49,15 +49,27 @@ X = [ones(m, 1) X];
 %                 initial_theta, options);
 %
 
+% What this function will do is the following:
+% This is going to get the one vs all, but not for only one type
+% we are doing this for all of them, in particular for num_labels
+% note that fmincg will only do ONE row of data, and I will need
+% num_labels rows of data
 
+initial_theta = zeros(n + 1, 1);
+options = optimset('GradObj', 'on', 'MaxIter', 50);
 
+for desiredNumLabel = 1 : num_labels
+  [minimalCostTheta] = fmincg(@(t)(lrCostFunction(t, X, (y == desiredNumLabel), lambda)), initial_theta, options);
+  all_theta(desiredNumLabel, :) = minimalCostTheta;
+end
 
-
-
-
-
-
-
+% Note that all_theta will have rows that will let us know, from which values
+% we are dealing correctly or incorrectly.
+% example, we have a "predictThis" is a 1xcolumns(X) image, and want to know if it is a 1,2,...,10
+% we use the all_theta row one to calculate how probable is it to be a 1
+% the same with row 2 for being a 2, etc
+% then, we see which one is the one most probable, and say that "predictThis"
+% is whichever value is most probable, for example, a 5
 
 
 % =========================================================================
