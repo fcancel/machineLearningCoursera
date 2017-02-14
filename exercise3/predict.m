@@ -33,7 +33,7 @@ a2 = [ones(1, columns(a2)); a2];
 z3 = Theta2 * a2; % Returns a rows(Theta2) x rows(X)
 a3 = sigmoid(z3);
 
-rowsWithCosts = a3';
+rowsWithCosts = a3';  % Here we have a lot of rows, and the sum of the columns add up to 1
 
 
 [notNeededValue , p] = max(rowsWithCosts, [], 2);
