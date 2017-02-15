@@ -86,10 +86,10 @@ J = J + regularizedCostNeuralNetwork(Theta1, Theta2, lambda, m);
 
 delta3 = (a3 - yMatrix)';
 
-delta2 = Theta2' * delta3 .* (a2Biased .* (1-a2Biased))';
+delta2 = [Theta2(:,2:end)]' * delta3 .* (a2 .* (1-a2))';
 
 
-bigDelta1 = [delta2(2:end,:)] * getBiased(X);
+bigDelta1 = delta2 * getBiased(X);
 
 bigDelta2 = delta3 * a2Biased;
 
