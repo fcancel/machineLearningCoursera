@@ -62,27 +62,19 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-% Add ones as a column to the X data matrix
-X = [ones(m, 1) X];
 
-z2 = Theta1 * X'; % Returns a rows(Theta1) x rows(X)
-a2 = sigmoid(z2);
+a2 = nnProcessInputOutput(X, Theta1);
 
-% Add ones to the a2 data matrix
-a2 = [ones(1, columns(a2)); a2];
+a3 = nnProcessInputOutput(a2, Theta2);
 
-z3 = Theta2 * a2; % Returns a rows(Theta2) x rows(X)
-a3 = sigmoid(z3);
-
-rowsWithCosts = a3';  % Here we have a lot of rows, and the sum of the columns add up to 1
 
 
 yMatrix = transformValueVectorToMatrix(y, num_labels);
 
-leftHandValuesMatrix = log(rowsWithCosts) .* yMatrix;
+leftHandValuesMatrix = log(a3) .* yMatrix;
 costLeftHandValues = sum(sum(leftHandValuesMatrix));
 
-rightHandValuesMatrix = log((1-rowsWithCosts)) .* (1-yMatrix);
+rightHandValuesMatrix = log((1-a3)) .* (1-yMatrix);
 costRightHandValues = sum(sum(rightHandValuesMatrix));
 
 J = -(costLeftHandValues + costRightHandValues)/m;
