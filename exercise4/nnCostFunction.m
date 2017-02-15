@@ -63,7 +63,6 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 a2 = nnProcessInputOutput(X, Theta1);
-a2Biased = getBiased(a2);
 
 a3 = nnProcessInputOutput(a2, Theta2);
 
@@ -90,12 +89,14 @@ delta2 = [Theta2(:,2:end)]' * delta3 .* (a2 .* (1-a2))';
 
 
 bigDelta1 = delta2 * getBiased(X);
+regularizationOfDelta1 = lambda * getRegularized(Theta1);
 
-bigDelta2 = delta3 * a2Biased;
+bigDelta2 = delta3 * getBiased(a2);
+regularizationOfDelta2 = lambda * getRegularized(Theta2);
 
-Theta1_grad = bigDelta1/m;
+Theta1_grad = (bigDelta1 + regularizationOfDelta1)/m;
 
-Theta2_grad = bigDelta2/m;
+Theta2_grad = (bigDelta2 + regularizationOfDelta2)/m;
 
 % =========================================================================
 
