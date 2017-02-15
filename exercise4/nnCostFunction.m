@@ -63,6 +63,7 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 a2 = nnProcessInputOutput(X, Theta1);
+a2Biased = getBiased(a2);
 
 a3 = nnProcessInputOutput(a2, Theta2);
 
@@ -79,6 +80,22 @@ J = -(costLeftHandValues + costRightHandValues)/m;
 J = J + regularizedCostNeuralNetwork(Theta1, Theta2, lambda, m);
 
 % -------------------------------------------------------------
+% Now we will do the backpropagation to get the gradient
+
+% Now we compute the deltas
+
+delta3 = (a3 - yMatrix)';
+
+delta2 = Theta2' * delta3 .* (a2Biased .* (1-a2Biased))';
+
+
+bigDelta1 = [delta2(2:end,:)] * getBiased(X);
+
+bigDelta2 = delta3 * a2Biased;
+
+Theta1_grad = bigDelta1/m;
+
+Theta2_grad = bigDelta2/m;
 
 % =========================================================================
 
