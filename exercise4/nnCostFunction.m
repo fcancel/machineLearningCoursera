@@ -62,12 +62,9 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-
 a2 = nnProcessInputOutput(X, Theta1);
 
 a3 = nnProcessInputOutput(a2, Theta2);
-
-
 
 yMatrix = transformValueVectorToMatrix(y, num_labels);
 
