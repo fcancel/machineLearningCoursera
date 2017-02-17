@@ -16,19 +16,16 @@ grad = zeros(size(theta));
 % Instructions: Compute the cost and gradient of regularized linear 
 %               regression for a particular choice of theta.
 %
-%               You should set J to the cost and grad to the gradient.
+%               You should set J to the cost and grad to  the gradient.
 %
+addpath("../functionHelpers");
 
+J = linearRegressionRegularizedCost(X, y, theta, lambda);
 
+gradientRegression = lambda/m * theta;
+gradientRegression(1) = 0;  %That's because you don't regularize the first theta
 
-
-
-
-
-
-
-
-
+%grad = ((1/m) * (hOfTheta - y)' * X) + gradientRegression';
 
 % =========================================================================
 
