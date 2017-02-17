@@ -22,10 +22,7 @@ addpath("../functionHelpers");
 
 J = linearRegressionRegularizedCost(X, y, theta, lambda);
 
-gradientRegression = lambda/m * theta;
-gradientRegression(1) = 0;  %That's because you don't regularize the first theta
-
-%grad = ((1/m) * (hOfTheta - y)' * X) + gradientRegression';
+grad = linearRegressionRegularizedGradient(X, y, theta, lambda);
 
 % =========================================================================
 
