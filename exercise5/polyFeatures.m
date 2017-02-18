@@ -15,7 +15,9 @@ X_poly = zeros(numel(X), p);
 %
 % 
 
-
+for index = 1:p
+  X_poly(:, index) = X.^(index);
+end
 
 
 
