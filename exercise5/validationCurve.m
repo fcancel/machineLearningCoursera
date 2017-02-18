@@ -39,11 +39,12 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
-
-
-
-
-
+for lambdaIndex = 1:length(lambda_vec)
+  theta = trainLinearReg(X, y, lambda_vec(lambdaIndex));
+  
+  error_train(lambdaIndex) = linearRegressionUnregularizedCost(X, y, theta);
+  error_val(lambdaIndex) = linearRegressionUnregularizedCost(Xval, yval, theta);
+end
 
 
 
