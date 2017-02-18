@@ -53,7 +53,17 @@ error_val   = zeros(m, 1);
 
 % ---------------------- Sample Solution ----------------------
 
+addpath("../functionHelpers");
 
+
+for index = 1:m
+  xMatrixTraining = X(1:index, :);
+  yVectorTraining = y(1:index);
+  theta = trainLinearReg(xMatrixTraining, yVectorTraining, lambda);
+  
+  error_train(index) = linearRegressionUnregularizedCost(xMatrixTraining, yVectorTraining, theta);
+  error_val(index) = linearRegressionUnregularizedCost(Xval, yval, theta);
+end
 
 
 
