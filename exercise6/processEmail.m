@@ -91,7 +91,7 @@ while ~isempty(email_contents)
     %               vector (e.g., word_indices = [word_indices ; 18]; ).
     % 
     % Note: vocabList{idx} returns a the word with index idx in the
-    %       vocabulary list.
+    %       vocabulary list.  
     % 
     % Note: You can use strcmp(str1, str2) to compare two strings (str1 and
     %       str2). It will return 1 only if the two strings are equivalent.
