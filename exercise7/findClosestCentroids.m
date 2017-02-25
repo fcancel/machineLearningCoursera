@@ -20,6 +20,22 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
+for currentExamplePointIndex = 1:size(X,1)
+  minimumDistanceToCentroid = intmax;
+  currentExamplePoint = X(currentExamplePointIndex, :);
+
+  for currentCentroidIndex = 1:K
+    currentCentroid = centroids(currentCentroidIndex, :);
+    
+    currentDistance = norm(currentExamplePoint - currentCentroid); 
+    
+    if (currentDistance < minimumDistanceToCentroid)
+      minimumDistanceToCentroid = currentDistance;
+      idx(currentExamplePointIndex) = currentCentroidIndex;
+    end
+
+  end
+end
 
 
 
