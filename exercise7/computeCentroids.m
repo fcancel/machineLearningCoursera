@@ -26,11 +26,13 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
-
-
-
+for centroidIndex = 1:K
+  vectorToMultiply = eq(centroidIndex * ones(m,1), idx)';
+  
+  meanOfCentroids = (vectorToMultiply * X)/sum(vectorToMultiply);
+  
+  centroids(centroidIndex,:) = meanOfCentroids;
+end
 
 
 % =============================================================
