@@ -41,14 +41,16 @@ Theta_grad = zeros(size(Theta));
 %
 
 
-valueOfAllowedMovies = ((Theta * X') - Y' ).* R'; 
+valueOfAllowedMovies = ((Theta * X') - Y' ).* R'; % users x movies matrix
 
 
 J = 1/2 * sum(sum(valueOfAllowedMovies.^2));
 
 
 
+X_grad = valueOfAllowedMovies' * Theta;
 
+Theta_grad = valueOfAllowedMovies * X;
 
 
 
