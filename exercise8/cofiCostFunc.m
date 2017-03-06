@@ -44,9 +44,9 @@ Theta_grad = zeros(size(Theta));
 valueOfAllowedMovies = ((Theta * X') - Y' ).* R'; % users x movies matrix
 
 
-J = 1/2 * sum(sum(valueOfAllowedMovies.^2));
+unregularizedJ = 1/2 * sum(sum(valueOfAllowedMovies.^2));
 
-
+J = unregularizedJ + (lambda/2) * (sum(sum(Theta.^2)) + sum(sum(X.^2)));
 
 X_grad = valueOfAllowedMovies' * Theta;
 
