@@ -41,10 +41,10 @@ Theta_grad = zeros(size(Theta));
 %
 
 
+valueOfAllowedMovies = ((Theta * X') - Y' ).* R'; 
 
 
-
-
+J = 1/2 * sum(sum(valueOfAllowedMovies.^2));
 
 
 
