@@ -48,14 +48,13 @@ unregularizedJ = 1/2 * sum(sum(valueOfAllowedMovies.^2));
 
 J = unregularizedJ + (lambda/2) * (sum(sum(Theta.^2)) + sum(sum(X.^2)));
 
-X_grad = valueOfAllowedMovies' * Theta;
+unregularizedX_grad = valueOfAllowedMovies' * Theta; % movies x features  
 
-Theta_grad = valueOfAllowedMovies * X;
+X_grad = unregularizedX_grad + lambda * X; % movies x features
 
+unregularizedTheta_grad = valueOfAllowedMovies * X; % users x features
 
-
-
-
+Theta_grad = unregularizedTheta_grad + lambda * Theta; % users x features
 
 % =============================================================
 
